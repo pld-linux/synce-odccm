@@ -1,0 +1,78 @@
+#!/bin/sh
+#
+# Daemon to keep a connection to your WinCE device up
+#
+# chkconfig:	345 98 02
+#
+# description:	Maintains a connection to a WinCE device, responding to keep \
+# alives and providing other members of the SynCE suite of tools with details \
+# of the IP address and providing the ability to autorun scripts upon \
+# connection.
+#
+# $Id$
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get service config - may override defaults
+[ -f /etc/sysconfig/odccm ] && . /etc/sysconfig/odccm
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network -a "$1" != stop -a "$1" != status ]; then
+		msg_network_down odccm
+		exit 1
+	fi
+else
+	exit 0
+fi
+
+start() {
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/odccm ]; then
+		msg_starting odccm
+		daemon odccm
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/odccm
+	else
+		msg_already_running odccm
+	fi
+}
+
+stop() {
+	if [ -f /var/lock/subsys/odccm ]; then
+		# Stop daemons.
+		msg_stopping odccm
+		killproc odccm
+		rm -f /var/lock/subsys/odccm
+	else
+		msg_not_running odccm
+	fi
+}
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+	stop
+	start
+	;;
+  status)
+	status odccm
+	RETVAL=$?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|status}"
+	exit 3
+esac
+
+exit $RETVAL
