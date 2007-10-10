@@ -42,7 +42,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/{dbus-1/system.d,rc.d/init.d}
+install -d $RPM_BUILD_ROOT/etc/{dbus-1/system.d,rc.d/init.d}
 cp -a data/dbus/odccm.conf $RPM_BUILD_ROOT/etc/dbus-1/system.d
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/odccm
 
