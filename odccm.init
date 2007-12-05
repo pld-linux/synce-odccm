@@ -34,7 +34,7 @@ start() {
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/odccm ]; then
 		msg_starting odccm
-		daemon odccm
+		daemon --fork /usr/sbin/odccm -f
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/odccm
 	else
