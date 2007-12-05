@@ -2,7 +2,7 @@ Summary:	DCCM implementation for Windows Mobile 5 (and newer) devices
 Summary(pl.UTF-8):	Implementacja DCCM dla urządzeń Windows Mobile 5 (i nowszych)
 Name:		synce-odccm
 Version:	0.10.0
-Release:	5
+Release:	6
 License:	GPL v2+
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/synce/%{name}-%{version}.tar.gz
@@ -17,7 +17,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	synce-libsynce-devel >= %{version}
 Requires(post,preun):	/sbin/chkconfig
-Requires:	rc-scripts
+Requires:	rc-scripts >= 0.4.0.10
 %requires_eq_to	synce-libsynce synce-libsynce-devel
 Conflicts:	synce-kde < 0.9.1-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
