@@ -1,12 +1,14 @@
+# TODO
+# - update pl
 Summary:	DCCM implementation for Windows Mobile 5 (and newer) devices
 Summary(pl.UTF-8):	Implementacja DCCM dla urządzeń Windows Mobile 5 (i nowszych)
 Name:		synce-odccm
-Version:	0.10.0
-Release:	7
+Version:	0.11
+Release:	1
 License:	GPL v2+
 Group:		Applications/Networking
-Source0:	http://dl.sourceforge.net/synce/%{name}-%{version}.tar.gz
-# Source0-md5:	977b8123a6d83dfb3194011b7c5b564c
+Source0:	http://dl.sourceforge.net/synce/odccm-%{version}.tar.gz
+# Source0-md5:	ed830920a91573215d2497c09bd5a310
 Source1:	odccm.init
 URL:		http://synce.sourceforge.net/
 BuildRequires:	dbus-glib-devel >= 0.60
@@ -23,8 +25,9 @@ Conflicts:	synce-kde < 0.9.1-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-odccm is a legacy-free dccm-implementation for Windows Mobile 5 (and
-newer) devices.
+odccm maintains a connection to a WinCE device, responding to keep alives and
+providing other members of the SynCE suite of tools with details of the IP
+address and providing the ability to autorun scripts upon connection.
 
 %description -l pl.UTF-8
 odccm to wolna od zaszłości implementacja DCCM dla Windows Mobile 5 i
@@ -42,8 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/etc/{dbus-1/system.d,rc.d/init.d}
-cp -a data/dbus/odccm.conf $RPM_BUILD_ROOT/etc/dbus-1/system.d
+install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/odccm
 
 %clean
