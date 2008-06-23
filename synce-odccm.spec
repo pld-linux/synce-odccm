@@ -1,5 +1,3 @@
-# TODO
-# - update pl
 Summary:	DCCM implementation for Windows Mobile 5 (and newer) devices
 Summary(pl.UTF-8):	Implementacja DCCM dla urządzeń Windows Mobile 5 (i nowszych)
 Name:		synce-odccm
@@ -25,13 +23,16 @@ Conflicts:	synce-kde < 0.9.1-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-odccm maintains a connection to a WinCE device, responding to keep alives and
-providing other members of the SynCE suite of tools with details of the IP
-address and providing the ability to autorun scripts upon connection.
+odccm maintains a connection to a WinCE device, responding to keep
+alives and providing other members of the SynCE suite of tools with
+details of the IP address and providing the ability to autorun scripts
+upon connection.
 
 %description -l pl.UTF-8
-odccm to wolna od zaszłości implementacja DCCM dla Windows Mobile 5 i
-nowszych urządzeń.
+odccm utrzymuje połączenie z urządzeniem WinCE, odpowiadając na
+zapytania "keep alive", udostępniając innym narzędziom z zestawu
+SynCE szczegóły o adresie IP oraz zapewniając możliwość automatycznego
+uruchamiania skryptów po połączeniu.
 
 %prep
 %setup -q -n odccm-%{version}
