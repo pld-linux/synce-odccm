@@ -2,10 +2,10 @@ Summary:	DCCM implementation for Windows Mobile 5 (and newer) devices
 Summary(pl.UTF-8):	Implementacja DCCM dla urządzeń Windows Mobile 5 (i nowszych)
 Name:		synce-odccm
 Version:	0.12
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Applications/Networking
-Source0:	http://dl.sourceforge.net/synce/odccm-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/synce/odccm-%{version}.tar.gz
 # Source0-md5:	03c833e4adb5ec17d32ac338cf1a6d18
 Source1:	odccm.init
 URL:		http://synce.sourceforge.net/
@@ -14,11 +14,11 @@ BuildRequires:	glib2-devel >= 1:2.8
 BuildRequires:	gnet-devel >= 2.0
 BuildRequires:	hal-devel
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	rpmbuild(macros) >= 1.559
 BuildRequires:	synce-libsynce-devel >= %{version}
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts >= 0.4.0.10
-%requires_eq_to	synce-libsynce synce-libsynce-devel
+%requires_ge_to synce-libsynce synce-libsynce-devel
 Conflicts:	synce-kde < 0.9.1-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -30,8 +30,8 @@ upon connection.
 
 %description -l pl.UTF-8
 odccm utrzymuje połączenie z urządzeniem WinCE, odpowiadając na
-zapytania "keep alive", udostępniając innym narzędziom z zestawu
-SynCE szczegóły o adresie IP oraz zapewniając możliwość automatycznego
+zapytania "keep alive", udostępniając innym narzędziom z zestawu SynCE
+szczegóły o adresie IP oraz zapewniając możliwość automatycznego
 uruchamiania skryptów po połączeniu.
 
 %prep
