@@ -2,15 +2,14 @@
 Summary:	DCCM implementation for Windows Mobile 5 (and newer) devices
 Summary(pl.UTF-8):	Implementacja DCCM dla urządzeń Windows Mobile 5 (i nowszych)
 Name:		synce-odccm
-Version:	0.12
-Release:	3
+Version:	0.13
+Release:	0.1
 License:	GPL v2+
 Group:		Applications/Networking
-Source0:	http://downloads.sourceforge.net/synce/odccm-%{version}.tar.gz
-# Source0-md5:	03c833e4adb5ec17d32ac338cf1a6d18
+Source0:	https://downloads.sourceforge.net/synce/odccm-%{version}.tar.gz
+# Source0-md5:	8f12585398f1a79518887d5f94cf122d
 Source1:	odccm.init
-Patch0:		%{name}-format.patch
-URL:		http://synce.sourceforge.net/
+URL:		https://sourceforge.net/projects/synce/
 BuildRequires:	dbus-devel >= 0.60
 BuildRequires:	dbus-glib-devel >= 0.60
 BuildRequires:	glib2-devel >= 1:2.8
@@ -39,7 +38,6 @@ uruchamiania skryptów po połączeniu.
 
 %prep
 %setup -q -n odccm-%{version}
-%patch0 -p1
 
 %build
 %configure
@@ -47,6 +45,7 @@ uruchamiania skryptów po połączeniu.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
